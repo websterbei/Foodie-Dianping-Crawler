@@ -34,6 +34,7 @@ def getPage(url):
 
 def parse(page):
     tree = etree.HTML(page.text)
+    print len(page.text)
     restaurants = []
     for i in range(15):
         res = {}
