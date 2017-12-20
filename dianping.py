@@ -11,7 +11,7 @@ import codecs
 from time import sleep
 
 def getUrls():
-    cityID = 2
+    cityID = 1
     pageNum = 0
     for i in range(50):
         pageNum += 1
@@ -19,7 +19,18 @@ def getUrls():
         yield url
 
 def getPage(url):
-    return requests.get(url)
+    header = {
+    "Host": "www.dianping.com",
+    "Connection": "keep-alive",
+    "Cache-Control": "max-age=0",
+    "Upgrade-Insecure-Requests": "1",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+    "Accept-Encoding": "gzip, deflate",
+    "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
+    "Cookie": "_lxsdk_cuid=1607148ee5ac8-01165c938ec79b-16386656-13c680-1607148ee5a98; _lxsdk=1607148ee5ac8-01165c938ec79b-16386656-13c680-1607148ee5a98; _hc.v=e3655d6e-6602-2602-f4d2-45a1a1b56249.1513729094; s_ViewType=10; cy=1; _lxsdk_s=16071b2b33a-e7a-674-ca8%7C%7C109"
+    }
+    return requests.get(url, headers = header)
 
 def parse(page):
     tree = etree.HTML(page.text)
@@ -64,7 +75,7 @@ def xmlGenerartor(dic):
 
 if __name__=="__main__":
     impl = getDOMImplementation()
-    newdoc = impl.createDocument(None, "beijing", None)
+    newdoc = impl.createDocument(None, "shanghai", None)
     restaurants = newdoc.createElement("restaurants")
     newdoc.documentElement.appendChild(restaurants)
     counter = 0
