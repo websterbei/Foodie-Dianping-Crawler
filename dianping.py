@@ -30,7 +30,7 @@ def getUrls():
         yield url
 
 def getPage(url):
-    return session.get(url, headers = header)
+    return session.get(url)
 
 def parse(page):
     tree = etree.HTML(page.text)
@@ -97,7 +97,7 @@ def xmlGenerartor(dic):
 
 if __name__=="__main__":
     session = requests.session()
-    print session.get("http://dianping.com", headers=header).text
+    session.headers.update(header)
     impl = getDOMImplementation()
     newdoc = impl.createDocument(None, "shanghai", None)
     restaurants = newdoc.createElement("restaurants")
