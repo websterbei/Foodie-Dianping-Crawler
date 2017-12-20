@@ -34,6 +34,7 @@ def getPage(url):
 
 def parse(page):
     tree = etree.HTML(page.text)
+    print page.text
     restaurants = []
     for i in range(15):
         res = {}
@@ -96,6 +97,7 @@ def xmlGenerartor(dic):
 
 if __name__=="__main__":
     session = requests.session()
+    print session.get("http://dianping.com", headers=header).text
     impl = getDOMImplementation()
     newdoc = impl.createDocument(None, "shanghai", None)
     restaurants = newdoc.createElement("restaurants")
