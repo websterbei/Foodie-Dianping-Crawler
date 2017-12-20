@@ -38,24 +38,45 @@ def parse(page):
     for i in range(15):
         res = {}
         ele = tree.xpath("//*[@id='shop-all-list']/ul/li[{}]//h4/text()".format(i+1))
-        res['name'] = ele[0]
+        try:
+            res['name'] = ele[0]
+        except:
+            res['name'] = "-1"
         ele = tree.xpath("//*[@id='shop-all-list']/ul/li[{}]/div[2]/div[3]/span[@class='addr']//text()".format(i+1))
-        res['address'] = ele[0]
+        try:
+            res['address'] = ele[0]
+        except:
+            res['address'] = "-1"
         ele = tree.xpath("//*[@id='shop-all-list']/ul/li[{}]//a[@class='mean-price']/b/text()".format(i+1))
         try:
             res["price"] = ele[0][1:]
         except:
             res["price"] = "-1"
         ele = tree.xpath("//*[@id='shop-all-list']/ul/li[{}]/div[2]/span/span[1]/b/text()".format(i+1))
-        res['taste'] = ele[0]
+        try:
+            res['taste'] = ele[0]
+        except:
+            res['taste'] = "-1"
         ele = tree.xpath("//*[@id='shop-all-list']/ul/li[{}]/div[2]/span/span[2]/b/text()".format(i+1))
-        res['env'] = ele[0]
+        try:
+            res['env'] = ele[0]
+        except:
+            res['env'] = "-1"
         ele = tree.xpath("//*[@id='shop-all-list']/ul/li[{}]/div[2]/span/span[3]/b/text()".format(i+1))
-        res['service'] = ele[0]
+        try:
+            res['service'] = ele[0]
+        except:
+            res['service'] = "-1"
         ele = tree.xpath("//*[@id='shop-all-list']/ul/li[{}]/div[2]/div[3]/a[1]/span//text()".format(i+1))
-        res['category'] = ele[0]
+        try:
+            res['category'] = ele[0]
+        except:
+            res['category'] = "-1"
         ele = tree.xpath("//*[@id='shop-all-list']/ul/li[{}]//img/@data-src".format(i+1))
-        res['pic']= ele[0]
+        try:
+            res['pic']= ele[0]
+        except:
+            res['pic'] = "-1"
         restaurants.append(res)
     return restaurants
 
