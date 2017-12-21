@@ -22,7 +22,7 @@ header = {
     }
 
 def getUrls():
-    cityID = 1
+    cityID = 4
     pageNum = 0
     for i in range(50):
         pageNum += 1
@@ -34,7 +34,6 @@ def getPage(url):
 
 def parse(page):
     tree = etree.HTML(page.text)
-    print page.text
     restaurants = []
     for i in range(15):
         res = {}
@@ -99,7 +98,7 @@ if __name__=="__main__":
     session = requests.session()
     session.headers.update(header)
     impl = getDOMImplementation()
-    newdoc = impl.createDocument(None, "shanghai", None)
+    newdoc = impl.createDocument(None, "guangzhou", None)
     restaurants = newdoc.createElement("restaurants")
     newdoc.documentElement.appendChild(restaurants)
     counter = 0
